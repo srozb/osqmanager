@@ -1,0 +1,2 @@
+# osqmanager
+osquery manager
