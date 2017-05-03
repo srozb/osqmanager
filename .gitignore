@@ -3,6 +3,7 @@
 *.crt
 *.db
 *.sqlite3
+app/osqmanager/osquery/migrations/*.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
