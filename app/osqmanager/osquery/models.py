@@ -75,3 +75,18 @@ class OsqueryClient(models.Model):
 
     def __str__(self):
         return "{}".format(self.hostname)
+
+class DistributedQuery(models.Model):
+    name = models.CharField(max_length=128, unique=True)
+    description = models.TextField(blank=True)
+    value = models.TextField(help_text="OSQ query itself")
+    enabled = models.BooleanField(default=False)
+    tag = models.ManyToManyField(Tag, blank=True)
+
+    class Meta:
+        db_table = 'distributed_query'
+        verbose_name = "Distributed query"
+        verbose_name_plural = "Distributed queries"
+
+    def __str__(self):
+        return "{}".format(self.name)

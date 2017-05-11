@@ -27,7 +27,12 @@ class OsqueryClientAdmin(admin.ModelAdmin):
 class TagAdmin(admin.ModelAdmin):
     list_display = ['name', 'description']
     search_fields = ['name']
-# Register your models here.
+
+
+class DistributedQueryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'description', 'enabled']
+    list_filter = ['enabled', 'tag']
+    search_fields = ['name']
 
 
 admin.site.register(models.BussinessUnit, BussinessUnitAdmin)
@@ -35,3 +40,4 @@ admin.site.register(models.ClientConfigTemplate, ClientConfigTemplateAdmin)
 admin.site.register(models.EventQuery, EventQueryAdmin)
 admin.site.register(models.OsqueryClient, OsqueryClientAdmin)
 admin.site.register(models.Tag, TagAdmin)
+admin.site.register(models.DistributedQuery, DistributedQueryAdmin)
