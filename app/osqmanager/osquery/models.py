@@ -68,6 +68,8 @@ class OsqueryClient(models.Model):
     uuid = models.UUIDField(blank=True, unique=True)
     bussiness_unit = models.ForeignKey(BussinessUnit)
     registered_date = models.DateTimeField(blank=True)
+    ip = models.GenericIPAddressField()
+    version = models.CharField(max_length=512)
     tag = models.ManyToManyField(Tag, help_text="Client tags", blank=True)
 
     class Meta:

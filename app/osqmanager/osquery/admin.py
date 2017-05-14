@@ -19,9 +19,9 @@ class ClientConfigTemplateAdmin(admin.ModelAdmin):
 
 class OsqueryClientAdmin(admin.ModelAdmin):
     list_display = ['hostname', 'node_key', 'uuid',
-                    'bussiness_unit', 'registered_date']
-    list_filter = ['bussiness_unit']
-    search_fields = ['node_key', 'hostname', 'uuid', 'tag']
+                    'bussiness_unit', 'registered_date', 'ip', 'version']
+    list_filter = ['bussiness_unit', 'version']
+    search_fields = ['node_key', 'hostname', 'uuid', 'tag', 'ip']
 
 
 class TagAdmin(admin.ModelAdmin):
