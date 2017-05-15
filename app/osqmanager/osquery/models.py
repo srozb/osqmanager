@@ -27,6 +27,19 @@ class Tag(models.Model):
         return "{}".format(self.name)
 
 
+class TagAssignmentRules(models.Model):
+    RULE_TYPES = (
+        ('IP', 'Single IP address'),
+        ('SUBNET', 'IP subnet CIDR'),
+        ('REGEX', 'Host identifier regex')
+    )
+    tag = models.ForeignKey(Tag)
+    type = models.CharField(max_length=8, choices=RULE_TYPES, default='SUBNET')
+    value = models.CharField(max_length=256, unique=True)
+    description = models.TextField(blank=True)
+    enabled = models.BooleanField(default=False)
+
+
 class ClientConfigTemplate(models.Model):
     default_config = """{
     "host_identifier": "uuid",
@@ -36,7 +49,8 @@ class ClientConfigTemplate(models.Model):
     template_name = models.CharField(max_length=512, unique=True)
     template_description = models.TextField(blank=True)
     template_config = models.TextField(default=default_config)
-    bussiness_unit = models.OneToOneField(BussinessUnit, help_text="Assigned bussiness unit")
+    bussiness_unit = models.OneToOneField(
+        BussinessUnit, help_text="Assigned bussiness unit")
 
     class Meta:
         db_table = 'client_config'
@@ -78,6 +92,7 @@ class OsqueryClient(models.Model):
 
     def __str__(self):
         return "{}".format(self.hostname)
+
 
 class DistributedQuery(models.Model):
     name = models.CharField(max_length=128, unique=True)

@@ -29,6 +29,12 @@ class TagAdmin(admin.ModelAdmin):
     search_fields = ['name']
 
 
+class TagAssignmentRulesAdmin(admin.ModelAdmin):
+    list_display = ['tag', 'type', 'value', 'description', 'enabled']
+    list_filter = ['enabled', 'tag', 'type']
+    search_fields = ['value', 'description']
+
+
 class DistributedQueryAdmin(admin.ModelAdmin):
     list_display = ['name', 'description', 'enabled']
     list_filter = ['enabled', 'tag']
@@ -40,4 +46,5 @@ admin.site.register(models.ClientConfigTemplate, ClientConfigTemplateAdmin)
 admin.site.register(models.EventQuery, EventQueryAdmin)
 admin.site.register(models.OsqueryClient, OsqueryClientAdmin)
 admin.site.register(models.Tag, TagAdmin)
+admin.site.register(models.TagAssignmentRules, TagAssignmentRulesAdmin)
 admin.site.register(models.DistributedQuery, DistributedQueryAdmin)
