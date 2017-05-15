@@ -71,6 +71,7 @@ class OsqueryClient(models.Model):
     ip = models.GenericIPAddressField()
     version = models.CharField(max_length=512)
     tag = models.ManyToManyField(Tag, help_text="Client tags", blank=True)
+    last_distributed_id = models.IntegerField(default=0)
 
     class Meta:
         db_table = 'osquery_client'
