@@ -19,7 +19,8 @@ class ClientConfigTemplateAdmin(admin.ModelAdmin):
 
 class OsqueryClientAdmin(admin.ModelAdmin):
     list_display = ['hostname', 'node_key', 'uuid',
-                    'bussiness_unit', 'registered_date', 'ip', 'version']
+                    'bussiness_unit', 'registered_date', 'last_communication',
+                    'ip', 'version', 'is_alive']
     list_filter = ['bussiness_unit', 'version']
     search_fields = ['node_key', 'hostname', 'uuid', 'tag', 'ip']
 

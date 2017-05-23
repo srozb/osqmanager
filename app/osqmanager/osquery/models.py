@@ -1,6 +1,9 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from osqmanager import settings
+from datetime import datetime, timedelta, tzinfo
+from django.utils import timezone
 
 
 class BussinessUnit(models.Model):
@@ -82,16 +85,24 @@ class OsqueryClient(models.Model):
     uuid = models.UUIDField(blank=True, unique=True)
     bussiness_unit = models.ForeignKey(BussinessUnit)
     registered_date = models.DateTimeField(blank=True)
+    last_communication = models.DateTimeField(blank=True)
     ip = models.GenericIPAddressField()
     version = models.CharField(max_length=512)
     tag = models.ManyToManyField(Tag, help_text="Client tags", blank=True)
     last_distributed_id = models.IntegerField(default=0)
 
-    class Meta:
-        db_table = 'osquery_client'
+    def is_alive(self):
+        boolean = True
+        time_diff = timezone.now() - self.last_communication
+        return time_diff.total_seconds() < 600  # TODO: move hardcoded to settin
+
+    is_alive.boolean = True
 
     def __str__(self):
         return "{}".format(self.hostname)
+
+    class Meta:
+        db_table = 'osquery_client'
 
 
 class DistributedQuery(models.Model):
