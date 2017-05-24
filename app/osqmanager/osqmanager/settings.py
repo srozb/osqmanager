@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'osqmanager.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db', 'test.db'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'osq',
+        'USER': 'osq',
+        'PASSWORD': 'change_this',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
