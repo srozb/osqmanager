@@ -82,7 +82,7 @@ class EventQuery(models.Model):
 class OsqueryClient(models.Model):
     node_key = models.CharField(max_length=1024, unique=True)
     hostname = models.CharField(max_length=512, blank=True)
-    uuid = models.UUIDField(blank=True, unique=True)
+    uuid = models.UUIDField(blank=True, null=True, unique=True)
     bussiness_unit = models.ForeignKey(BussinessUnit)
     registered_date = models.DateTimeField(blank=True)
     last_communication = models.DateTimeField(blank=True)
