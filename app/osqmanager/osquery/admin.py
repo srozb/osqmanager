@@ -21,7 +21,8 @@ class OsqueryClientAdmin(admin.ModelAdmin):
     list_display = ['hostname', 'node_key', 'uuid',
                     'bussiness_unit', 'registered_date', 'last_communication',
                     'ip', 'version', 'is_alive']
-    list_filter = ['bussiness_unit', 'version']
+    list_filter = ['bussiness_unit', 'version',
+                   'platform', 'os_name', 'os_version']
     search_fields = ['node_key', 'hostname', 'uuid', 'tag', 'ip']
 
 

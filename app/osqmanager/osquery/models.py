@@ -88,6 +88,9 @@ class OsqueryClient(models.Model):
     last_communication = models.DateTimeField(blank=True)
     ip = models.GenericIPAddressField()
     version = models.CharField(max_length=512)
+    platform = models.CharField(max_length=512, blank=True, null=True)
+    os_name = models.CharField(max_length=512, blank=True, null=True)
+    os_version = models.CharField(max_length=256, blank=True, null=True)
     tag = models.ManyToManyField(Tag, help_text="Client tags", blank=True)
     last_distributed_id = models.IntegerField(default=0)
 
